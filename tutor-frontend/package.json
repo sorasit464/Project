@@ -1,0 +1,32 @@
+{
+  "name": "tutor-thi-chi-frontend",
+  "version": "1.0.0",
+  "description": "Frontend สำหรับระบบหาติวเตอร์ออนไลน์ Tutor Thi Chi",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=8080 --open=/index.html",
+    "dev": "npx live-server --port=8080 --open=/index.html",
+    "build": "echo 'Frontend is static HTML, no build step required'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "tutor",
+    "education",
+    "online-learning",
+    "thai",
+    "frontend"
+  ],
+  "author": "Tutor Thi Chi Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/tutor-thi-chi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/tutor-thi-chi/issues"
+  },
+  "homepage": "https://github.com/your-username/tutor-thi-chi#readme"
+}

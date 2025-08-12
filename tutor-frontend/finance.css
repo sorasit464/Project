@@ -1,0 +1,186 @@
+/* ============ Finance (Tutor Thi Chi) ============ */
+:root{
+  --bg:#f7f8fc;
+  --text:#2b2f3c;
+  --muted:#6b7280;
+  --primary:#667eea;
+  --primary-2:#764ba2;
+  --accent:#ffd700;
+  --card:#ffffff;
+  --ring:#e7e9ff;
+  --success:#22c55e;
+  --danger:#ef4444;
+  --pending:#f59e0b;
+  --radius:16px;
+  --shadow:0 10px 28px rgba(102,126,234,.14);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Prompt',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 90% -20%, rgba(118,75,162,.12), transparent 60%),
+    radial-gradient(700px 400px at -10% 110%, rgba(102,126,234,.10), transparent 60%),
+    var(--bg);
+}
+
+/* ============ Layout ============ */
+.finance-container{display:flex;min-height:100vh}
+
+.sidebar{
+  width: 270px;
+  background: #1a1f4a; /* พื้นหลังเข้ม */
+  color: #c7ccff;       /* ตัวอักษรโทนลาเวนเดอร์ */
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid #23284c; /* เส้นขอบเข้ม */
+}
+
+.logo-group{
+  display:flex;align-items:center;gap:10px;margin:8px 6px 20px 6px;
+}
+.site-logo{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.logo{
+  color:#fff;text-decoration:none;font-weight:700;font-size:1.15rem;letter-spacing:.2px;
+}
+
+.sidebar-menu{list-style:none;padding:8px;margin:0;flex:1;overflow:auto}
+.sidebar-menu li{margin-bottom:6px}
+.sidebar-menu a{
+  color:#eef1ff;text-decoration:none;font-weight:500;
+  display:flex;align-items:center;gap:.8rem;
+  padding:.8rem .9rem;border-radius:12px;
+  transition:all .18s ease;
+}
+.sidebar-menu a i{width:20px;text-align:center;opacity:.9}
+.sidebar-menu a:hover{background:rgba(255,255,255,.12);transform:translateX(2px)}
+.sidebar-menu a.active{background:rgba(255,255,255,.18);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+
+.sidebar-logout{margin-top:auto;padding:6px 8px}
+.sidebar-menu-logout{
+  display:flex;align-items:center;gap:.6rem;
+  color:#fff;text-decoration:none;font-weight:600;
+  background:rgba(0,0,0,.18);padding:.75rem .9rem;border-radius:12px;
+  transition:filter .18s;
+}
+.sidebar-menu-logout:hover{filter:brightness(1.08)}
+
+/* Main */
+.main-content{flex:1;min-width:0;padding:28px 28px 40px 28px}
+
+/* ============ Header ============ */
+.finance-header{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:18px 20px;margin:8px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.finance-header h1{
+  margin:0;font-size:1.6rem;letter-spacing:.2px;
+  background:linear-gradient(90deg,var(--primary),var(--primary-2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.add-btn{
+  background:var(--success);color:#fff;border:0;border-radius:12px;
+  padding:.75rem 1.1rem;font-weight:700;cursor:pointer;
+  box-shadow:0 10px 18px rgba(34,197,94,.18);
+  transition:transform .12s, filter .12s, background .2s;
+}
+.add-btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+.add-btn i{margin-right:.5rem}
+
+/* ============ Summary Cards ============ */
+.summary-cards{
+  display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:18px;margin:10px 0 22px;
+}
+.summary-card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:18px 20px;position:relative;isolation:isolate;overflow:hidden;
+}
+.summary-card::after{
+  content:"";position:absolute;inset:auto -40px -40px auto;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(102,126,234,.22), transparent 70%);
+  z-index:-1;
+}
+.summary-icon{font-size:2rem;margin-bottom:.35rem;opacity:.95}
+.summary-card.income .summary-icon{color:var(--success)}
+.summary-card.expense .summary-icon{color:var(--danger)}
+.summary-card.balance .summary-icon{color:var(--accent)}
+
+.summary-label{color:var(--muted);font-size:1rem}
+.summary-value{font-size:1.8rem;font-weight:800;margin-top:2px}
+
+/* ============ Table ============ */
+.table-section{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 16px;
+}
+.table-section h2{
+  margin:6px 6px 12px;font-size:1.15rem;color:var(--primary-2);letter-spacing:.2px;
+}
+table{width:100%;border-collapse:separate;border-spacing:0}
+thead th{
+  position:sticky;top:0;background:#f3f5ff;color:#4f46e5;
+  text-align:left;padding:12px;border-bottom:1px solid #e7e9ff;font-weight:700;
+}
+th,td{padding:12px;text-align:left}
+tbody td{border-bottom:1px solid #f1f2f7}
+tr:nth-child(even) td{background:#fbfcff}
+.align-right{text-align:right}
+.sticky-right{position:sticky;right:0;background:#fff}
+
+/* Status pills */
+.status{
+  padding:.35rem .7rem;border-radius:999px;font-weight:700;font-size:.95rem;display:inline-block
+}
+.status.success{background:#e6f9ed;color:#16a34a}
+.status.pending{background:#fff7e6;color:#b45309}
+.status.failed{background:#feeceb;color:#dc2626}
+
+/* Action buttons */
+.action-btns{white-space:nowrap}
+.action-btns .edit,
+.action-btns .delete{
+  border:0;border-radius:10px;padding:.45rem .85rem;margin-right:.4rem;cursor:pointer;font-weight:700;transition:filter .15s
+}
+.action-btns .edit{background:var(--accent);color:#1f2937}
+.action-btns .delete{background:var(--danger);color:#fff}
+.action-btns .edit:hover{filter:brightness(1.05)}
+.action-btns .delete:hover{filter:brightness(1.03)}
+
+/* ============ Responsive ============ */
+@media (max-width:1100px){
+  .summary-cards{grid-template-columns:repeat(2,minmax(220px,1fr))}
+}
+@media (max-width:900px){
+  .finance-container{flex-direction:column}
+  .sidebar{
+    position:relative;height:auto;width:100%;
+    border-bottom:1px solid rgba(255,255,255,.18);
+    border-radius:0 0 18px 18px;
+  }
+  .main-content{padding:18px}
+}
+@media (max-width:640px){
+  .summary-cards{grid-template-columns:1fr}
+  thead th:nth-child(2){min-width:220px}
+  .finance-header{flex-direction:column;align-items:flex-start;gap:10px}
+  .add-btn{width:100%}
+}
+
+/* ============ Accessbility focus ============ */
+a,button{transition:box-shadow .12s ease, transform .06s ease}
+a:focus-visible,button:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ring)}
+
+/* Optional dark-mode */
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0f1226;--text:#e9ecff;--muted:#b9c0ff;--card:#14183a;--ring:#313861}
+  thead th{background:#1a1f4a;color:#c7ccff;border-color:#23284c}
+  tbody td{border-color:#1f2450}
+  tr:nth-child(even) td{background:#10143a}
+  .sticky-right{background:var(--card)}
+}

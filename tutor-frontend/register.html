@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ลงทะเบียนติวเตอร์ | Tutor Thi Chi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="register.css">
+  
+
+</head>
+ 
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="logo.png" class="brand__logo" alt="Tutor Thi Chi" />
+        <span class="brand__name">Tutor Thi Chi</span>
+      </a>
+      <a class="back" href="index.html"><i class="fa-solid fa-chevron-left"></i> กลับหน้าแรก</a>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <section class="hero">
+    <div>
+      <h1>ลงทะเบียน<span
+          style="background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent">
+          ติวเตอร์ใหม่</span></h1>
+      <p>กรอกข้อมูลให้ครบเพื่อให้ผู้เรียนค้นหาและติดต่อคุณได้ง่ายขึ้น</p>
+    </div>
+  </section>
+
+  <main class="shell">
+    <!-- Form panel -->
+    <section class="panel">
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step is-active"><i class="fa-solid fa-id-card"></i><span>โปรไฟล์</span></div>
+        <div class="step is-active"><i class="fa-solid fa-book-open"></i><span>วิชา/ระดับ</span></div>
+        <div class="step"><i class="fa-solid fa-wallet"></i><span>อัตราค่าสอน</span></div>
+        <div class="step"><i class="fa-solid fa-paper-plane"></i><span>ส่งคำขอ</span></div>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <!-- Profile -->
+        <div class="grid g-2" style="padding:16px">
+          <div class="field">
+            <label class="label">ชื่อ–นามสกุล <span class="req">*</span></label>
+            <div class="control"><i class="fa-regular fa-user"></i>
+              <input type="text" name="fullName" placeholder="เช่น สมชาย ใจดี" required />
+            </div>
+            <small class="hint">แสดงต่อผู้เรียนในหน้าโปรไฟล์</small>
+          </div>
+
+          <div class="field">
+            <label class="label">อีเมล <span class="req">*</span></label>
+            <div class="control"><i class="fa-regular fa-envelope"></i>
+              <input type="email" name="email" placeholder="name@example.com" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">เบอร์โทร <span class="req">*</span></label>
+            <div class="control"><i class="fa-solid fa-phone"></i>
+              <input type="tel" name="phone" placeholder="08x-xxx-xxxx" required pattern="^0[0-9\- ]{8,12}$" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">พื้นที่สอน</label>
+            <div class="control"><i class="fa-solid fa-location-dot"></i>
+              <input type="text" name="location" placeholder="กรุงเทพฯ / ออนไลน์" />
+            </div>
+          </div>
+
+          <div class="field" style="grid-column:1/-1">
+            <label class="label">แนะนำตัวสั้น ๆ</label>
+            <div class="control"><i class="fa-regular fa-comment-dots"></i>
+              <textarea name="bio" placeholder="ประสบการณ์สอน / จุดเด่น / แนวการสอน"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--line); margin:2px 16px 14px" />
+
+        <!-- Subjects / Levels -->
+        <div class="grid" style="padding:0 16px 16px">
+          <div class="field">
+            <label class="label">วิชาที่สอน <span class="req">*</span></label>
+            <div class="tags" id="subjectTags">
+              <span class="tag">คณิตศาสตร์</span>
+              <span class="tag">วิทยาศาสตร์</span>
+              <span class="tag">ฟิสิกส์</span>
+              <span class="tag">เคมี</span>
+              <span class="tag">ชีววิทยา</span>
+              <span class="tag">ภาษาอังกฤษ</span>
+              <span class="tag">ภาษาไทย</span>
+              <span class="tag">คอมพิวเตอร์</span>
+            </div>
+            <input type="hidden" name="subjects" id="subjectsInput" required />
+            <small class="hint">คลิกเพื่อเลือกหลายรายการ</small>
+          </div>
+
+          <div class="grid g-2">
+            <div class="field">
+              <label class="label">ระดับชั้น <span class="req">*</span></label>
+              <div class="control"><i class="fa-solid fa-layer-group"></i>
+                <select name="level" required>
+                  <option value="">— เลือก —</option>
+                  <option>ประถม</option>
+                  <option>มัธยมต้น</option>
+                  <option>มัธยมปลาย</option>
+                  <option>มหาวิทยาลัย</option>
+                  <option>บุคคลทั่วไป</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">รูปแบบการสอน</label>
+              <div class="control"><i class="fa-solid fa-chalkboard-user"></i>
+                <select name="mode">
+                  <option>ออนไลน์</option>
+                  <option>ตัวต่อตัว</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--line); margin:2px 16px 14px" />
+
+        <!-- Pricing & Availability -->
+        <div class="grid g-2" style="padding:0 16px 16px">
+          <div class="field">
+            <label class="label">อัตราค่าสอน (บาท/ชั่วโมง) <span class="req">*</span></label>
+            <div class="control"><i class="fa-solid fa-coins"></i>
+              <input type="number" name="rate" placeholder="เช่น 400" min="100" max="2000" required />
+            </div>
+            <small class="hint">สามารถปรับเปลี่ยนได้ภายหลัง</small>
+          </div>
+
+          <div class="field">
+            <label class="label">ประสบการณ์สอน (ปี)</label>
+            <div class="control"><i class="fa-regular fa-clock"></i>
+              <input type="number" name="exp" placeholder="เช่น 3" min="0" max="40" />
+            </div>
+          </div>
+
+         <div style="grid-column:1/-1">
+            <label style="font-weight:700">เลือกช่วงเวลาสอน <span style="color:#ffd54d;font-weight:700">*</span></label>
+            <div style="display:flex;align-items:center;gap:.6rem;background:#0d1130;border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.85rem .95rem;">
+              <i class="fa-regular fa-calendar-check" style="opacity:.8"></i>
+              <input id="slotPicker" name="slot" required placeholder="เลือกวันและเวลาที่สะดวก" style="flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:1rem">
+            </div>
+            <small style="color:#c7ccff">สามารถเลือกได้หลายวัน/เวลา</small>
+          </div>
+        </div>
+
+<!-- เพิ่ม CSS & JS ของ Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/th.js"></script>
+
+<script>
+flatpickr("#slotPicker", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    mode: "multiple", // เลือกได้หลายช่วง
+    locale: "th"       // ภาษาไทย
+    });
+</script>
+        
+
+        <hr style="border:none;border-top:1px solid var(--line); margin:2px 50px 40px" />
+
+        <!-- Upload -->
+        <div class="grid" style="padding:0 16px 6px">
+          <div class="field">
+            <label class="label">รูปโปรไฟล์</label>
+            <label class="upload" id="uploadBox">
+              <input type="file" id="avatar" accept="image/*" hidden>
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <div>คลิกเพื่ออัปโหลด</div>
+              <small class="hint">ไฟล์ JPG/PNG ขนาดไม่เกิน 10 MB</small>
+              <div class="thumb"><img id="preview" alt="ตัวอย่างรูป" /></div>
+            </label>
+          </div>
+        </div>
+        <div class="grid" style="padding:0 16px 16px">
+          <div class="field">
+            <label class="label">เอกสารยืนยัน (ถ้ามี)</label>
+            <div class="control"><i class="fa-regular fa-file-lines"></i>
+              <input type="text" name="docs" placeholder="ลิงก์ Google Drive / Portfolio" />
+            </div>
+          </div>
+
+          <div class="field" style="align-items:start">
+            <label class="label">ข้อตกลง</label>
+            <label class="control control--checkbox">
+              <input type="checkbox" id="agree" />
+              <span class="hint">ยอมรับเงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัว</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <a class="btn btn--ghost" href="index.html"><i class="fa-solid fa-xmark"></i> ยกเลิก</a>
+          <button class="btn btn--wide" type="submit"><i class="fa-solid fa-paper-plane"></i> ส่งคำขอลงทะเบียน</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Aside panel -->
+    <aside class="panel aside">
+
+      <div class="box">
+        <h3><i class="fa-solid fa-lock"></i> ความเป็นส่วนตัว</h3>
+        <p class="hint">ข้อมูลติดต่อจะแสดงเฉพาะกับนักเรียนที่ทำการจองเท่านั้น</p>
+      </div>
+
+      <div class="box">
+        <h3><i class="fa-solid fa-shield-halved"></i> มาตรฐานคุณภาพ</h3>
+        <p class="hint">ทีมงานอาจติดต่อเพื่อยืนยันตัวตนและประสบการณ์เพิ่มเติม</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check" style="color:#22c55e"></i><span>ส่งคำขอเรียบร้อย!
+      ทีมงานจะตรวจสอบภายใน 24 ชม.</span></div>
+
+  <script>
+    // Toggle tag selection -> put to hidden input as CSV
+    const tagEls = [...document.querySelectorAll('#subjectTags .tag')];
+    const subjectsInput = document.getElementById('subjectsInput');
+    tagEls.forEach(t => t.addEventListener('click', () => {
+      t.classList.toggle('is-active');
+      const selected = tagEls.filter(x => x.classList.contains('is-active')).map(x => x.textContent.trim());
+      subjectsInput.value = selected.join(',');
+    }));
+
+    // Upload preview
+    const fileInput = document.getElementById('avatar');
+    const previewImg = document.getElementById('preview');
+    const thumb = document.querySelector('.upload .thumb');
+    fileInput.addEventListener('change', () => {
+      const f = fileInput.files[0];
+      if (!f) return;
+      if (f.size > 10 * 1980 * 1080) { alert('ไฟล์ใหญ่เกิน 10 MB'); fileInput.value = ''; return; }
+      const reader = new FileReader();
+      reader.onload = e => {
+        previewImg.src = e.target.result;
+        thumb.style.display = 'block';
+      };
+      reader.readAsDataURL(f);
+    });
+
+    // Minimal validation + toast
+    const form = document.getElementById('registerForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const required = ['fullName', 'email', 'phone', 'rate', 'level', 'subjects'];
+      for (const k of required) {
+        if (!fd.get(k) || String(fd.get(k)).trim() === '') {
+          alert('กรุณากรอกข้อมูลให้ครบ: ' + k);
+          return;
+        }
+      }
+      if (!document.getElementById('agree').checked) {
+        alert('กรุณาติ๊กยอมรับข้อตกลง');
+        return;
+      }
+      // simulate submit
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+      form.reset();
+      subjectsInput.value = '';
+      tagEls.forEach(t => t.classList.remove('is-active'));
+      document.querySelector('.upload .thumb').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+
+</html>

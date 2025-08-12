@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รายชื่อติวเตอร์ & รีวิว | Tutor Thi Chi</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tutors.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" role="banner">
+    <nav class="nav" aria-label="เมนูหลัก">
+      <div class="logo-group">
+        <img src="logo.png" alt="Tutor Thi Chi Logo" class="site-logo" />
+        <a href="index.html" class="logo">Tutor Thi Chi</a>
+      </div>
+      <ul class="menu">
+        <li><a href="index.html#home">หน้าแรก</a></li>
+        <li><a href="tutors.html" class="active">ติวเตอร์</a></li>
+        <li><a href="index.html#subjects">วิชา</a></li>
+        <li><a href="index.html#about">เกี่ยวกับเรา</a></li>
+        <li><a href="index.html#contact">ติดต่อ</a></li>
+        <li><a href="register.html" class="highlight-tab">ลงสอนพิเศษ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>รีวิว & รายชื่อติวเตอร์</h1>
+      <p>ค้นหา กรอง และเลือกติวเตอร์ที่ใช่สำหรับคุณ</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <main class="wrap">
+    <div class="panel" role="region" aria-label="รายชื่อติวเตอร์">
+      <div class="toolbar" role="search">
+        <div class="search" aria-label="กล่องค้นหา">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="q" placeholder="ค้นหาชื่อติวเตอร์ หรือ วิชา..." aria-label="ค้นหา" />
+        </div>
+        <div class="filter" aria-label="ตัวกรอง">
+          <button class="chip active" data-filter="all" aria-pressed="true"><i class="fa-solid fa-list"></i> ทั้งหมด</button>
+          <button class="chip" data-filter=">=4.5" aria-pressed="false"><i class="fa-solid fa-star"></i> 4.5+</button>
+          <button class="chip" data-filter="online" aria-pressed="false"><i class="fa-solid fa-globe"></i> ออนไลน์</button>
+          <button class="chip" data-filter="onsite" aria-pressed="false"><i class="fa-solid fa-location-dot"></i> ออนไซต์</button>
+        </div>
+        <div class="page-size">
+          <i class="fa-regular fa-rectangle-list" aria-hidden="true"></i>
+          <label for="size" class="sr-only">จำนวนต่อหน้า</label>
+          <select id="size" aria-label="จำนวนรายการต่อหน้า">
+            <option value="2">แสดง 2</option>
+            <option value="4" selected>แสดง 4</option>
+            <option value="8">แสดง 8</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="list" class="list" aria-live="polite"></div>
+
+      <div class="empty" id="empty" hidden>
+        <i class="fa-regular fa-face-frown"></i>
+        <p>ไม่พบผลลัพธ์ที่ตรงกับการค้นหา</p>
+      </div>
+
+      <div class="pager" aria-label="ตัวควบคุมหน้า">
+        <button id="prev" class="btn ghost"><i class="fa-solid fa-arrow-left"></i> ย้อนกลับ</button>
+        <div class="info"><span id="pageNow">1</span>/<span id="pageTotal">1</span> • ทั้งหมด <span id="count">0</span> คน</div>
+        <button id="next" class="btn primary">ถัดไป <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mock data
+    const tutors = [
+      { name:'A',  subject:'คณิตศาสตร์ ม.ปลาย', rating:5,   mode:'online',   reviews:132 },
+      { name:'B',  subject:'ฟิสิกส์ ม.ต้น',     rating:4.5, mode:'onsite',   reviews:88  },
+      { name:'C',  subject:'ภาษาอังกฤษ ทุกระดับ', rating:4,   mode:'online',   reviews:210 },
+      { name:'D',  subject:'วิทยาศาสตร์ ม.ต้น',  rating:4,   mode:'onsite',   reviews:67  },
+      { name:'E',  subject:'ภาษาไทย ม.ปลาย',    rating:4.8, mode:'online',   reviews:34  },
+      { name:'F',  subject:'เคมี ม.ปลาย',       rating:4.6, mode:'both',     reviews:51  },
+      { name:'G',  subject:'ชีววิทยา',          rating:4.2, mode:'onsite',   reviews:20  },
+      { name:'H',  subject:'เขียนโปรแกรม',       rating:5,   mode:'online',   reviews:99  },
+    ];
+
+    const state = { page:1, size:4, filter:'all', q:'' };
+    const $ = (s)=>document.querySelector(s); const $$=(s)=>Array.from(document.querySelectorAll(s));
+
+    function applyFilter(){
+      let data = tutors.slice();
+      if(state.q){ const kw = state.q.toLowerCase(); data = data.filter(t=> (t.name+" "+t.subject).toLowerCase().includes(kw)); }
+      if(state.filter==='>=4.5' || state.filter===">=4.5") data = data.filter(t=> t.rating>=4.5);
+      if(state.filter==='online') data = data.filter(t=> t.mode==='online' || t.mode==='both');
+      if(state.filter==='onsite') data = data.filter(t=> t.mode==='onsite' || t.mode==='both');
+      return data;
+    }
+
+    function itemTemplate(t){
+      const badge = t.rating>=4.8 ? '<span class="badge" title="Top Rated">TOP</span>' : '';
+      const modeText = t.mode==='both'?'ออนไลน์/ออนไซต์':t.mode;
+      return `
+        <article class="item fade-in" role="article">
+          <div class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i>${badge}</div>
+          <div class="meta">
+            <h3>ชื่อ Tutor : ${t.name}</h3>
+            <div class="rating">
+              <span class="stars" aria-hidden="true">${'★'.repeat(Math.round(t.rating))}</span>
+              <span><strong>${t.rating}</strong>/5 • ${t.reviews.toLocaleString('th-TH')} รีวิว</span>
+            </div>
+            <div class="tags">
+              <span class="tag"><i class="fa-solid fa-book"></i> วิชา: ${t.subject}</span>
+              <span class="tag"><i class="fa-solid fa-signal"></i> โหมด: ${modeText}</span>
+            </div>
+          </div>
+          <div class="cta">
+            <button class="btn ghost" aria-label="ดูโปรไฟล์ติวเตอร์ ${t.name}"><i class="fa-regular fa-eye"></i> ดูโปรไฟล์</button>
+            <button class="btn primary" aria-label="จองติวเตอร์ ${t.name}"><i class="fa-solid fa-paper-plane"></i> จองเลย</button>
+          </div>
+        </article>`
+    }
+
+    function render(){
+      const data = applyFilter();
+      const totalPages = Math.max(1, Math.ceil(data.length/state.size));
+      state.page = Math.min(state.page, totalPages);
+      const start = (state.page-1)*state.size;
+      const items = data.slice(start, start+state.size);
+      $('#list').innerHTML = items.map(itemTemplate).join('');
+
+      const isEmpty = data.length===0;
+      $('#empty').hidden = !isEmpty;
+
+      $('#pageNow').textContent = state.page; $('#pageTotal').textContent = totalPages; $('#count').textContent = data.length;
+      $('#prev').disabled = state.page===1; $('#next').disabled = state.page===totalPages;
+    }
+
+    $('#prev').addEventListener('click', ()=>{state.page--;render()});
+    $('#next').addEventListener('click', ()=>{state.page++;render()});
+
+    let tmr; $('#q').addEventListener('input', e=>{ clearTimeout(tmr); tmr=setTimeout(()=>{ state.q=e.target.value.trim(); state.page=1; render();}, 180) });
+
+    $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
+      $$('.chip').forEach(c=>{c.classList.remove('active'); c.setAttribute('aria-pressed','false')});
+      ch.classList.add('active'); ch.setAttribute('aria-pressed','true');
+      state.filter=ch.dataset.filter; state.page=1; render();
+    }));
+
+    $('#size').addEventListener('change', (e)=>{ state.size=+e.target.value; state.page=1; render(); })
+
+    render();
+  </script>
+   <script src="tutors.css"></script>
+</body>
+</html>

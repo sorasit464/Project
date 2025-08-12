@@ -1,0 +1,367 @@
+/* ============ Tutor Thi Chi – Register (Luxury Gradient) ============ */
+:root{
+  --bg:#0f1226;                /* ดาร์กเนวี่ */
+  --surface:#13173a;           /* พื้นผิวเข้ม */
+  --card:#171c46;              /* การ์ด */
+  --text:#e9ecff;              /* ตัวอักษรหลัก */
+  --muted:#b7bdfa;             /* อักษรรอง */
+  --line:rgba(255,255,255,.12);/* เส้นคั่น */
+  --primary:#7a7cff;           /* ไฮไลท์ */
+  --primary-2:#8b5cf6;         /* ไล่เฉด */
+  --accent:#ec4899;            /* พิงก์เนียน */
+  --success:#22c55e;
+  --radius:18px;
+  --shadow:0 20px 60px rgba(0,0,0,.40);
+  --gradient:linear-gradient(135deg,#6366f1 0%,#8b5cf6 45%,#ec4899 100%);
+}
+
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Prompt',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 85% -15%, rgba(139,92,246,.25), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(236,72,153,.18), transparent 60%),
+    linear-gradient(180deg, #0d1024 0%, #0f1226 100%);
+}
+
+/* เลเยอร์ประกาย */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background:
+    radial-gradient(800px 420px at 10% -5%, rgba(99,102,241,.22), transparent 60%),
+    radial-gradient(700px 380px at 100% 10%, rgba(236,72,153,.12), transparent 60%);
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+
+/* ===== Header ===== */
+.header{
+  position:sticky; top:0; z-index:20;
+  backdrop-filter: blur(10px);
+  background:linear-gradient(180deg, rgba(20,24,58,.9) 0%, rgba(20,24,58,.55) 100%);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1100px; margin:0 auto; padding:14px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none}
+.brand__logo{width:36px; height:36px; border-radius:10px; object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.brand__name{font-weight:600; letter-spacing:.2px}
+.back{color:var(--muted); text-decoration:none; font-weight:500}
+.back i{margin-right:6px}
+.back:hover{color:#fff}
+
+/* ===== Hero ===== */
+.hero{
+  max-width:1100px; margin:26px auto 10px; padding:0 18px;
+}
+.hero h1{
+  margin:8px 0 6px;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height:1.15;
+  letter-spacing:.2px;
+}
+.hero p{color:var(--muted); margin:0}
+
+/* ===== Layout ===== */
+.shell{
+  max-width:1100px; margin:12px auto 60px; padding:0 18px;
+  display:grid; grid-template-columns: minmax(0,1fr) 330px; gap:18px;
+}
+@media (max-width: 980px){
+  .shell{grid-template-columns:1fr}
+}
+
+/* ===== Panels ===== */
+.panel{
+  background: linear-gradient(180deg, rgba(23,28,70,.9), rgba(19,23,58,.9));
+  border:1px solid var(--line);
+  border-radius:calc(var(--radius) + 2px);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.panel::after{
+  content:"";
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 30%, transparent 70%, rgba(255,255,255,.035) 100%);
+}
+
+/* ===== Steps ===== */
+.steps{
+  display:flex; gap:10px; padding:14px; flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+}
+.step{
+  display:flex; align-items:center; gap:8px;
+  padding:10px 12px; border-radius:999px;
+  color:var(--muted);
+  border:1px dashed rgba(255,255,255,.16);
+  backdrop-filter: blur(6px);
+}
+.step i{opacity:.9}
+.step.is-active{
+  color:#fff; border-style:solid;
+  background:linear-gradient(180deg, rgba(122,124,255,.28), rgba(139,92,246,.22));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 8px 22px rgba(99,102,241,.18);
+}
+
+/* ===== Form ===== */
+form{padding-bottom:14px}
+.grid{display:grid; gap:14px}
+.g-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+@media (max-width:720px){ .g-2{grid-template-columns:1fr} }
+
+.field{display:flex; flex-direction:column; gap:8px}
+.label{
+  font-size:.95rem; font-weight:600; letter-spacing:.2px;
+  color:#fff; display:flex; align-items:center; gap:8px;
+}
+.req{color:#ffd34d}
+.hint{color:var(--muted); font-size:.88rem}
+
+.control{
+  display:flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-radius:14px; padding:12px 14px;
+  transition: box-shadow .2s, border-color .2s, background .2s, transform .08s;
+}
+.control:focus-within{
+  border-color:rgba(122,124,255,.65);
+  box-shadow:0 0 0 4px rgba(122,124,255,.18);
+  background:rgba(255,255,255,.07);
+}
+
+.control i{color:#cfd3ff; opacity:.85}
+
+/* Inputs */
+input[type="text"],input[type="email"],input[type="tel"],
+input[type="number"],textarea,select{
+  width:100%; border:none; outline:none;
+  background:transparent; color:var(--text);
+  font-size:1rem; font-family:inherit;
+}
+textarea{min-height:110px; resize:vertical}
+
+/* ===== Select Dropdown Styling ===== */
+select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image: linear-gradient(45deg, transparent 50%, #6366f1 50%),
+                    linear-gradient(135deg, #6366f1 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat:no-repeat;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Option styling for better readability */
+select option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 500;
+  padding: 8px 12px;
+}
+
+select option:hover {
+  background-color: #f3f4f6 !important;
+}
+
+select option:checked {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+}
+
+/* ===== Tags (วิชา) ===== */
+.tags{display:flex; flex-wrap:wrap; gap:8px}
+.tag{
+  padding:8px 12px; border-radius:999px; cursor:pointer;
+  color:#dfe2ff; font-weight:500; letter-spacing:.1px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  transition:transform .08s ease, box-shadow .2s ease, background .2s ease, border-color .2s;
+  user-select:none;
+}
+.tag:hover{transform:translateY(-1px)}
+.tag.is-active{
+  color:#fff; border-color:transparent;
+  background: var(--gradient);
+  box-shadow:0 10px 24px rgba(99,102,241,.28);
+}
+
+/* ===== Upload ===== */
+.upload{
+  display:grid; place-items:center; text-align:center; gap:8px;
+  padding:26px 16px; border-radius:16px; cursor:pointer;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 10px, transparent 10px 20px);
+  border:1px dashed rgba(255,255,255,.22);
+  transition: border-color .2s, box-shadow .2s, transform .08s;
+}
+.upload:hover{
+  border-color:rgba(122,124,255,.65);
+  box-shadow:0 0 0 4px rgba(122,124,255,.14);
+}
+.upload i{font-size:28px; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent}
+.upload .thumb{display:none; width:110px; height:110px; border-radius:14px; overflow:hidden; border:1px solid var(--line)}
+.upload .thumb img{width:100%; height:100%; object-fit:cover}
+
+/* HR */
+hr{border:none; border-top:1px solid var(--line)}
+
+/* ===== Aside Panel ===== */
+.panel.aside {
+  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent),
+              var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ===== Each Box ===== */
+.panel.aside .box {
+  background: radial-gradient(120% 120% at 0% 0%, rgba(99,102,241,.15), transparent 60%),
+              rgba(255,255,255,.02);
+  border: 1px solid rgba(231,233,255,.15);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.panel.aside .box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0,0,0,.25);
+}
+
+.panel.aside .box h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.panel.aside .box h3 i {
+  color: var(--primary-600);
+}
+
+.panel.aside .box p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+/* ===== Buttons & Actions ===== */
+.actions{
+  display:flex; gap:10px; flex-wrap:wrap;
+  padding:14px; border-top:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border:none; cursor:pointer; text-decoration:none;
+  font-weight:600; letter-spacing:.2px;
+  padding:12px 16px; border-radius:14px; transition: transform .08s ease, box-shadow .2s, opacity .2s;
+}
+.btn i{opacity:.95}
+
+.btn--wide{flex:1 1 260px; color:#fff; background:var(--gradient); box-shadow:0 14px 28px rgba(99,102,241,.28)}
+.btn--wide:hover{transform:translateY(-1px)}
+.btn--ghost{background:rgba(255,255,255,.06); color:#fff; border:1px solid var(--line)}
+.btn--ghost:hover{background:rgba(255,255,255,.09)}
+
+/* ===== Toast ===== */
+.toast{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px);
+  display:flex; align-items:center; gap:10px;
+  color:#fff; background:linear-gradient(180deg, rgba(36,207,107,.95), rgba(16,121,72,.95));
+  border-radius:14px; padding:12px 16px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+  opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease;
+  border:1px solid rgba(179, 63, 63, 0.18);
+}
+.toast.show{opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0)}
+
+/* Checkbox control fine-tune */
+.control--checkbox{
+  gap:.6rem;
+  align-items:flex-start;
+  padding:10px 12px;
+}
+.control--checkbox input[type="checkbox"]{
+  flex:0 0 auto;
+  margin-top:2px;
+  width:18px; height:18px;
+  accent-color: var(--primary);
+}
+
+/* ===== Flatpickr (ธีมกำมะหยี่) ===== */
+.flatpickr-calendar{
+  background:linear-gradient(180deg, #ffffff, #6baddd) !important;
+  border:1px solid rgba(0, 0, 0, 0.18) !important;
+  box-shadow:0 20px 60px rgba(0,0,0,.45) !important;
+  border-radius:16px !important;
+}
+.flatpickr-months,.flatpickr-weekdays{
+  background:rgba(255,255,255,.06) !important;
+  color:#000000 !important;
+  border-bottom:1px solid rgba(255,255,255,.12) !important;
+}
+.flatpickr-day{
+  color:#000000 !important; border-radius:10px !important;
+}
+.flatpickr-day.today{
+  border-color:rgba(122,124,255,.65) !important;
+}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{
+  background:linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border-color:transparent !important; color:#000000 !important;
+}
+.flatpickr-time,.flatpickr-time input{
+  background:transparent !important; color:#000000 !important; border:none !important;
+}
+
+
+.login-container {
+  margin: auto;
+}
+.form-container {
+  margin: auto;
+}
+
+/* ===== States ===== */
+input:invalid,select:invalid,textarea:invalid{
+  /* เฮินท์เบา ๆ เวลาเว้นช่องว่าง */
+  box-shadow:none;
+}
+.control:has(:invalid){
+  border-color:rgba(236,72,153,.55);
+  box-shadow:0 0 0 4px rgba(236,72,153,.16);
+}
+.control:has(:valid){
+  border-color:rgba(122,124,255,.55);
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important}
+}

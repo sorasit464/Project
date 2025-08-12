@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บัญชีการเงิน | Tutor Thi Chi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<!-- CSS แยกไฟล์ -->
+  <link rel="stylesheet" href="finance.css" />
+
+<body>
+    <div class="finance-container">
+        <aside class="sidebar">
+            <div class="logo-group">
+                <img src="logo.png" alt="Tutor Thi Chi Logo" class="site-logo">
+                <a href="index.html" class="logo">Tutor Thi Chi</a>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-wallet"></i>สรุปการเงิน</a></li>
+                <li><a href="#"><i class="fas fa-exchange-alt"></i>ธุรกรรม</a></li>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i>รายงาน</a></li>
+            </ul>
+            <div class="sidebar-logout">
+                <a href="index.html" class="sidebar-menu-logout"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="finance-header">
+                <h1>ระบบบัญชีการเงิน</h1>
+                <button class="add-btn"><i class="fas fa-plus"></i> เพิ่มธุรกรรม</button>
+            </div>
+            <div class="summary-cards">
+                <div class="summary-card income">
+                    <div class="summary-icon"><i class="fas fa-arrow-down"></i></div>
+                    <div class="summary-label">ยอดรายรับ</div>
+                    <div class="summary-value">฿45,000</div>
+                </div>
+                <div class="summary-card expense">
+                    <div class="summary-icon"><i class="fas fa-arrow-up"></i></div>
+                    <div class="summary-label">ยอดรายจ่าย</div>
+                    <div class="summary-value">฿12,500</div>
+                </div>
+                <div class="summary-card balance">
+                    <div class="summary-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="summary-label">คงเหลือ</div>
+                    <div class="summary-value">฿32,500</div>
+                </div>
+            </div>
+            <div class="table-section">
+                <h2>รายการธุรกรรม</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>วันที่</th>
+                            <th>รายการ</th>
+                            <th>ประเภท</th>
+                            <th>จำนวนเงิน</th>
+                            <th>สถานะ</th>
+                            <th>การจัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-06-01</td>
+                            <td>ชำระเงินคอร์สคณิตศาสตร์</td>
+                            <td>รายรับ</td>
+                            <td>฿1,200</td>
+                            <td><span class="status success">สำเร็จ</span></td>
+                            <td class="action-btns">
+                                <button class="edit"><i class="fas fa-edit"></i> แก้ไข</button>
+                                <button class="delete"><i class="fas fa-trash"></i> ลบ</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-06-02</td>
+                            <td>โอนเงินให้ติวเตอร์</td>
+                            <td>รายจ่าย</td>
+                            <td>฿800</td>
+                            <td><span class="status success">สำเร็จ</span></td>
+                            <td class="action-btns">
+                                <button class="edit"><i class="fas fa-edit"></i> แก้ไข</button>
+                                <button class="delete"><i class="fas fa-trash"></i> ลบ</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-06-03</td>
+                            <td>คืนเงินผู้เรียน</td>
+                            <td>รายจ่าย</td>
+                            <td>฿400</td>
+                            <td><span class="status failed">ล้มเหลว</span></td>
+                            <td class="action-btns">
+                                <button class="edit"><i class="fas fa-edit"></i> แก้ไข</button>
+                                <button class="delete"><i class="fas fa-trash"></i> ลบ</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-06-04</td>
+                            <td>ชำระเงินคอร์สภาษาอังกฤษ</td>
+                            <td>รายรับ</td>
+                            <td>฿1,500</td>
+                            <td><span class="status pending">รอดำเนินการ</span></td>
+                            <td class="action-btns">
+                                <button class="edit"><i class="fas fa-edit"></i> แก้ไข</button>
+                                <button class="delete"><i class="fas fa-trash"></i> ลบ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
